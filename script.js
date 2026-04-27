@@ -20,14 +20,14 @@ const PRODUCTS = [
   {
     id: 1, name: "25W PD Adapter", brand: "SAMSUNG",
     description: "USB-C 25W Power Delivery charger, compact design, compatible with all USB-C devices for fast charging.",
-    price: 12999, oldPrice: null,
+    price: 120, oldPrice: null,
     image: "img/3.jpeg",
-    category: "Airpods", badge: "new", rating: 5,
-    specs: [
-      { key: "Processeur", val: "Apple M3 8 cœurs" }, { key: "Mémoire",   val: "8 Go RAM" },
-      { key: "Stockage",   val: "256 Go SSD" },        { key: "Écran",    val: "13.6\" Liquid Retina" },
-      { key: "Autonomie",  val: "18 heures" },         { key: "Garantie", val: "1 an Apple" },
-    ],
+    category: "Accessoires", badge: "new", rating: 5,
+    //specs: [
+     // { key: "Processeur", val: "Apple M3 8 cœurs" }, { key: "Mémoire",   val: "8 Go RAM" },
+      //{ key: "Stockage",   val: "256 Go SSD" },        { key: "Écran",    val: "13.6\" Liquid Retina" },
+      //{ key: "Autonomie",  val: "18 heures" },         { key: "Garantie", val: "1 an Apple" },
+    //],
   },
   {
     id: 2, name: "iPhone 16 Pro", brand: "Apple",
