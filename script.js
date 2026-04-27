@@ -3,8 +3,8 @@
 // ══════════════════════════════════
 const SELLER = {
   name:     "TechNova Store",
-  phone:    "212600000000",    // ← Votre numéro WhatsApp sans + ni espaces (ex: 212612345678)
-  city:     "Marrakesh, Maroc",
+  phone:    "212706717887",    // ← Votre numéro WhatsApp sans + ni espaces (ex: 212612345678)
+  city:     "Zgora, Maroc",
   desc:     "Votre boutique de confiance pour l'électronique à Marrakesh. Produits authentiques, garantie constructeur, livraison rapide.",
   initials: "T",
   avatar:   null,              // ← URL ou chemin vers photo du vendeur, ex: "images/vendeur.jpg"
@@ -18,11 +18,11 @@ const SELLER = {
 // ══════════════════════════════════
 const PRODUCTS = [
   {
-    id: 1, name: "MacBook Air M3", brand: "Apple",
-    description: "Le MacBook Air le plus fin et léger, puce M3, autonomie 18h, écran Liquid Retina 13 pouces.",
+    id: 1, name: "25W PD Adapter", brand: "SAMSUNG",
+    description: "USB-C 25W Power Delivery charger, compact design, compatible with all USB-C devices for fast charging.",
     price: 12999, oldPrice: null,
-    image: null, emoji: "💻",        // ← ex: "images/macbook-air.jpg"
-    category: "laptop", badge: "new", rating: 5,
+    image: "img/3.jpeg",
+    category: "Airpods", badge: "new", rating: 5,
     specs: [
       { key: "Processeur", val: "Apple M3 8 cœurs" }, { key: "Mémoire",   val: "8 Go RAM" },
       { key: "Stockage",   val: "256 Go SSD" },        { key: "Écran",    val: "13.6\" Liquid Retina" },
@@ -33,7 +33,7 @@ const PRODUCTS = [
     id: 2, name: "iPhone 16 Pro", brand: "Apple",
     description: "iPhone A18 Pro, caméra 48 MP, écran Super Retina XDR 6.1\", bouton Action personnalisable.",
     price: 11999, oldPrice: 13999,
-    image: null, emoji: "📱",
+    image: "img/2.jpeg", emoji: "📱",
     category: "phone", badge: "sale", rating: 5,
     specs: [
       { key: "Puce",     val: "Apple A18 Pro" },    { key: "Écran",    val: "6.1\" Super Retina XDR" },
@@ -45,7 +45,7 @@ const PRODUCTS = [
     id: 3, name: "Sony WH-1000XM5", brand: "Sony",
     description: "Casque premium avec réduction de bruit active, 30h autonomie, qualité audio Hi-Res certifiée.",
     price: 3499, oldPrice: 3999,
-    image: null, emoji: "🎧",
+    image: "img/3.jpeg", emoji: "🎧",
     category: "audio", badge: "sale", rating: 4,
     specs: [
       { key: "Autonomie",       val: "30 heures" },     { key: "ANC",       val: "Actif premium" },
@@ -57,7 +57,7 @@ const PRODUCTS = [
     id: 4, name: "Samsung Galaxy S25", brand: "Samsung",
     description: "Flagship Android Snapdragon 8 Elite, IA Galaxy intégrée, triple caméra 200 MP, AMOLED 6.2\".",
     price: 8999, oldPrice: null,
-    image: null, emoji: "📱",
+    image: "img/4.jpeg", emoji: "📱",
     category: "phone", badge: "new", rating: 5,
     specs: [
       { key: "Puce",     val: "Snapdragon 8 Elite" }, { key: "Écran",    val: "6.2\" AMOLED 120Hz" },
@@ -69,7 +69,7 @@ const PRODUCTS = [
     id: 5, name: "Dell XPS 15", brand: "Dell",
     description: "PC portable pro Intel Core i9, RTX 4070, écran OLED 3.5K tactile, châssis aluminium ultra-fin.",
     price: 16999, oldPrice: null,
-    image: null, emoji: "💻",
+    image: "img/5.jpeg", emoji: "💻",
     category: "laptop", badge: null, rating: 4,
     specs: [
       { key: "Processeur", val: "Intel Core i9-13900H" }, { key: "GPU",     val: "NVIDIA RTX 4070" },
@@ -81,7 +81,7 @@ const PRODUCTS = [
     id: 6, name: "AirPods Pro 3", brand: "Apple",
     description: "Écouteurs ANC adaptatif, audio spatial personnalisé, boîtier MagSafe, 30h autonomie totale.",
     price: 2799, oldPrice: null,
-    image: null, emoji: "🎧",
+    image: "img/6.jpeg", emoji: "🎧",
     category: "audio", badge: null, rating: 5,
     specs: [
       { key: "ANC",       val: "Actif adaptatif" },   { key: "Audio",    val: "Spatial personnalisé" },
@@ -93,7 +93,7 @@ const PRODUCTS = [
     id: 7, name: "Logitech MX Keys", brand: "Logitech",
     description: "Clavier sans fil premium, rétroéclairage intelligent, connexion multi-appareils jusqu'à 3 devices.",
     price: 1099, oldPrice: 1299,
-    image: null, emoji: "⌨️",
+    image: "img/7.jpeg", emoji: "⌨️",
     category: "accessory", badge: "sale", rating: 5,
     specs: [
       { key: "Connexion",    val: "Bluetooth + Unifying" }, { key: "Multi-device", val: "3 appareils" },
@@ -105,7 +105,7 @@ const PRODUCTS = [
     id: 8, name: "Razer DeathAdder V3", brand: "Razer",
     description: "Souris gaming ultra-légère 63g, capteur 30 000 DPI, switches optiques, design ergonomique.",
     price: 799, oldPrice: 999,
-    image: null, emoji: "🖱️",
+    image: "img/8.jpeg", emoji: "🖱️",
     category: "accessory", badge: "sale", rating: 5,
     specs: [
       { key: "Poids",    val: "63 grammes" },         { key: "Capteur",  val: "30 000 DPI" },
@@ -117,7 +117,7 @@ const PRODUCTS = [
     id: 9, name: "iPad Pro M4", brand: "Apple",
     description: "Tablette la plus fine au monde, puce M4, écran Ultra Retina XDR 11\", Wi-Fi 6E.",
     price: 10999, oldPrice: null,
-    image: null, emoji: "📱",
+    image: "img/9.jpeg", emoji: "📱",
     category: "phone", badge: "new", rating: 5,
     specs: [
       { key: "Puce",      val: "Apple M4" },            { key: "Écran",    val: "11\" Ultra Retina XDR" },
