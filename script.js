@@ -5,7 +5,7 @@ const SELLER = {
   name:     "TechNova Store",
   phone:    "212706717887",    // ← Votre numéro WhatsApp sans + ni espaces (ex: 212612345678)
   city:     "Zgora, Maroc",
-  desc:     "Votre boutique de confiance pour l'électronique à Marrakesh. Produits authentiques, garantie constructeur, livraison rapide.",
+  desc:     "Votre boutique de confiance pour l'électronique à Zagora. Produits authentiques, garantie constructeur, livraison rapide.",
   initials: "T",
   avatar:   null,              // ← URL ou chemin vers photo du vendeur, ex: "images/vendeur.jpg"
 };
@@ -30,16 +30,16 @@ const PRODUCTS = [
     //],
   },
   {
-    id: 2, name: "iPhone 16 Pro", brand: "Apple",
-    description: "iPhone A18 Pro, caméra 48 MP, écran Super Retina XDR 6.1\", bouton Action personnalisable.",
-    price: 11999, oldPrice: 13999,
-    image: "img/2.jpeg", emoji: "📱",
-    category: "phone", badge: "sale", rating: 5,
-    specs: [
-      { key: "Puce",     val: "Apple A18 Pro" },    { key: "Écran",    val: "6.1\" Super Retina XDR" },
-      { key: "Caméra",   val: "Triple 48 MP" },     { key: "Stockage", val: "128 Go" },
-      { key: "Batterie", val: "22h vidéo" },        { key: "Garantie", val: "1 an Apple" },
-    ],
+    id: 2, name: "cik 02", brand: "CIK",
+    description: "Écouteurs sans fil à conduction aérienne (Open Ear Air Conduction) avec tour de cou. ",
+    price: 160, oldPrice: null,
+    image: "img/2.jpeg", emoji: "🎧",
+    category: "Accessoires", badge: "sale", rating: 5,
+    //specs: [
+      //{ key: "Puce",     val: "Apple A18 Pro" },    { key: "Écran",    val: "6.1\" Super Retina XDR" },
+      //{ key: "Caméra",   val: "Triple 48 MP" },     { key: "Stockage", val: "128 Go" },
+      //{ key: "Batterie", val: "22h vidéo" },        { key: "Garantie", val: "1 an Apple" },
+    //],
   },
   {
     id: 3, name: "Sony WH-1000XM5", brand: "Sony",
