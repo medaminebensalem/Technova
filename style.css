@@ -219,6 +219,39 @@ footer { background: var(--surface); border-top: 1px solid var(--border); paddin
 .footer-bottom { border-top: 1px solid var(--border); padding-top: 24px; display: flex; justify-content: space-between; align-items: center; }
 .footer-bottom p { color: var(--muted); font-size: 0.82rem; }
 
+/* ── FOOTER SOCIAL ICONS ── */
+.footer-social {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  padding: 32px 0;
+  margin-top: 8px;
+}
+.social-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  color: var(--muted);
+  transition: all 0.3s ease;
+}
+.social-icon svg {
+  width: 20px;
+  height: 20px;
+}
+.social-icon:hover {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #000;
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(232, 255, 0, 0.25);
+}
+
 /* ── TOAST ── */
 .toast { position: fixed; bottom: 32px; left: 50%; transform: translateX(-50%) translateY(80px); background: var(--surface); border: 1px solid var(--accent); color: var(--text); padding: 13px 26px; border-radius: 40px; font-size: 0.88rem; z-index: 400; transition: transform .3s cubic-bezier(.4,0,.2,1); white-space: nowrap; }
 .toast.show { transform: translateX(-50%) translateY(0); }
