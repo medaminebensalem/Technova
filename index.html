@@ -3,7 +3,15 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>TechStore — Électronique & Innovation</title>
+  <title>TechNova — Électronique & Innovation à Zagora</title>
+  <meta name="description" content="TechNova Store — boutique d'électronique à Zagora, Maroc. Smartphones, ordinateurs, audio, gaming, TV et accessoires. Commandez directement sur WhatsApp, livraison 24-48h." />
+  <meta name="theme-color" content="#0a0a0a" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%E2%9A%A1%3C/text%3E%3C/svg%3E" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="TechNova — Électronique & Innovation" />
+  <meta property="og:description" content="Boutique d'électronique à Zagora, Maroc. Smartphones, ordinateurs, audio, gaming, TV et accessoires. Commandez sur WhatsApp, livraison 24-48h." />
+  <meta property="og:image" content="img/4.jpeg" />
+  <meta name="twitter:card" content="summary_large_image" />
   <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="style.css">
 </head>
@@ -12,15 +20,16 @@
 <!-- ══ NAV ══ -->
 <nav>
   <div class="logo">TECH<span>NOVA</span></div>
-  <ul class="nav-links">
-    <li><a href="#vendeur">Vendeur</a></li>
-    <li><a href="#categories">Catégories</a></li>
-    <li><a href="#products">Produits</a></li>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#vendeur" onclick="closeMenu()">Vendeur</a></li>
+    <li><a href="#categories" onclick="closeMenu()">Catégories</a></li>
+    <li><a href="#products" onclick="closeMenu()">Produits</a></li>
   </ul>
   <div class="nav-actions">
-    <button class="cart-btn" onclick="openCart()">
+    <button type="button" class="cart-btn" onclick="openCart()">
       🛒 Panier <span class="cart-count" id="cartCount">0</span>
     </button>
+    <button type="button" class="hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="navLinks">☰</button>
   </div>
 </nav>
 
@@ -35,21 +44,26 @@
       <a href="#vendeur" class="btn-ghost">Contacter le vendeur</a>
     </div>
     <div class="stats-row">
-      <div><div class="stat-num">500+</div><div class="stat-label">Produits</div></div>
-      <div><div class="stat-num">12K+</div><div class="stat-label">Clients</div></div>
-      <div><div class="stat-num">4.9★</div><div class="stat-label">Note moyenne</div></div>
+      <div><div class="stat-num" id="statProducts">0</div><div class="stat-label">Produits</div></div>
+      <div><div class="stat-num" id="statAvis" data-count="2400" data-suffix="+">0</div><div class="stat-label">Avis clients</div></div>
+      <div><div class="stat-num" id="statRating" data-count="4.9" data-decimals="1" data-suffix="★">0</div><div class="stat-label">Note moyenne</div></div>
     </div>
   </div>
   <div class="hero-visual">
     <div class="product-showcase">
       <div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--accent),var(--accent2));border-radius:24px 24px 0 0;"></div>
-      <div class="showcase-img-placeholder"><img src="img/4.jpeg" alt="45W Power Adapter"></div>
-      <div style="font-family:'Syne',sans-serif;font-weight:700;font-size:1.3rem;margin-bottom:6px;">45W Power Adapter </div>
-      <div style="color:var(--muted);font-size:0.88rem;margin-bottom:20px;"></div>
-      <div style="font-family:'Syne',sans-serif;font-weight:800;font-size:1.8rem;color:var(--accent);">170 DH</div>
+      <div class="showcase-img-placeholder" id="heroShowcaseImg"></div>
+      <div id="heroShowcaseName" style="font-family:'Syne',sans-serif;font-weight:700;font-size:1.3rem;margin-bottom:6px;"></div>
+      <div id="heroShowcaseDesc" style="color:var(--muted);font-size:0.88rem;margin-bottom:20px;"></div>
+      <div id="heroShowcasePrice" style="font-family:'Syne',sans-serif;font-weight:800;font-size:1.8rem;color:var(--accent);"></div>
     </div>
   </div>
 </section>
+
+<!-- ══ MARQUEE ══ -->
+<div class="marquee" aria-hidden="true">
+  <div class="marquee-track" id="marqueeTrack"></div>
+</div>
 
 <!-- ══ SELLER ══ -->
 <section class="seller-section" id="vendeur">
@@ -65,7 +79,7 @@
         <div class="seller-badge">🚚 Livraison 24–48h</div>
       </div>
     </div>
-    <a id="sellerWaLink" href="#" target="_blank" class="seller-wa-btn" onclick="contactSellerWhatsApp(event)">
+    <a id="sellerWaLink" href="#" target="_blank" rel="noopener" class="seller-wa-btn" onclick="contactSellerWhatsApp(event)">
       <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
       Contacter le vendeur
     </a>
@@ -76,20 +90,32 @@
 <section class="main-section" id="categories" style="background:var(--surface);">
   <div class="section-label">Explorer</div>
   <h2 class="section-title">Nos catégories</h2>
-  <div class="cat-grid">
-    <div class="cat-card active" onclick="filterProducts('all',this)"><div class="cat-icon">⚡</div><div class="cat-name">Tous</div><div class="cat-count" id="count-all">—</div></div>
-    <div class="cat-card" onclick="filterProducts('laptop',this)"><div class="cat-icon">💻</div><div class="cat-name">Ordinateurs</div><div class="cat-count" id="count-laptop">—</div></div>
-    <div class="cat-card" onclick="filterProducts('phone',this)"><div class="cat-icon">📱</div><div class="cat-name">Smartphones</div><div class="cat-count" id="count-phone">—</div></div>
-    <div class="cat-card" onclick="filterProducts('audio',this)"><div class="cat-icon">🎧</div><div class="cat-name">Audio</div><div class="cat-count" id="count-audio">—</div></div>
-    <div class="cat-card" onclick="filterProducts('accessory',this)"><div class="cat-icon">⌨️</div><div class="cat-name">Accessoires</div><div class="cat-count" id="count-accessory">—</div></div>
-  </div>
+  <div class="cat-grid" id="catGrid"></div>
 </section>
 
 <!-- ══ PRODUCTS ══ -->
 <section class="main-section" id="products">
-  <div style="display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:40px;">
+  <div style="display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:16px;margin-bottom:14px;">
     <div><div class="section-label">Catalogue</div><h2 class="section-title" style="margin-bottom:0;">Nos produits</h2></div>
+    <div style="display:flex;gap:12px;flex-wrap:wrap;align-items:center;">
+      <div class="search-wrap">
+        <span class="search-icon" aria-hidden="true">🔍</span>
+        <input type="search" id="searchInput" class="search-input" placeholder="Rechercher un produit ou une marque…" autocomplete="off" aria-label="Rechercher un produit" oninput="searchProducts(this.value)" />
+        <button type="button" class="search-clear" id="searchClear" onclick="clearSearch()" aria-label="Effacer la recherche">✕</button>
+      </div>
+      <select id="sortSelect" class="sort-select" onchange="sortProducts(this.value)" aria-label="Trier les produits">
+        <option value="pertinence">Trier : Pertinence</option>
+        <option value="prix-asc">Prix croissant</option>
+        <option value="prix-desc">Prix décroissant</option>
+        <option value="nouveautes">Nouveautés</option>
+        <option value="promos">Promotions</option>
+        <option value="note">Meilleures notes</option>
+      </select>
+    </div>
+  </div>
+  <div style="display:flex;justify-content:space-between;align-items:center;gap:16px;margin-bottom:28px;flex-wrap:wrap;">
     <span id="productCount" style="color:var(--muted);font-size:0.88rem;"></span>
+    <span id="searchResultNote" style="color:var(--accent);font-size:0.85rem;"></span>
   </div>
   <div class="products-grid" id="productsGrid"></div>
 </section>
@@ -122,16 +148,16 @@
   
   <!-- Social Media Icons -->
   <div class="footer-social">
-    <a href="https://www.facebook.com/share/18csr5pJok/" target="_blank" class="social-icon" aria-label="Facebook">
+    <a href="https://www.facebook.com/share/18csr5pJok/" target="_blank" rel="noopener" class="social-icon" aria-label="Facebook">
       <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
     </a>
-    <a href="https://www.instagram.com/hakim_elctronique/?utm_source=qr&r=nametag" target="_blank" class="social-icon" aria-label="Instagram">
+    <a href="https://www.instagram.com/hakim_elctronique/?utm_source=qr&r=nametag" target="_blank" rel="noopener" class="social-icon" aria-label="Instagram">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
     </a>
-    <a href="https://tiktok.com" target="_blank" class="social-icon" aria-label="TikTok">
+    <a href="https://tiktok.com" target="_blank" rel="noopener" class="social-icon" aria-label="TikTok">
       <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/></svg>
     </a>
-    <a href="https://youtube.com" target="_blank" class="social-icon" aria-label="YouTube">
+    <a href="https://youtube.com" target="_blank" rel="noopener" class="social-icon" aria-label="YouTube">
       <svg viewBox="0 0 24 24" fill="currentColor"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"/><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02" fill="#0a0a0a"/></svg>
     </a>
   </div>
@@ -145,15 +171,15 @@
 <!-- ══ CART DRAWER ══ -->
 <div class="cart-overlay" id="cartOverlay" onclick="closeCart()"></div>
 <div class="cart-drawer" id="cartDrawer">
-  <div class="cart-header"><h2>Mon Panier</h2><button class="close-btn" onclick="closeCart()">✕</button></div>
+  <div class="cart-header"><h2>Mon Panier</h2><button type="button" class="close-btn" onclick="closeCart()">✕</button></div>
   <div class="cart-items" id="cartItems"></div>
-  <div id="cartFooter"></div>
+  <div id="cartFooter" class="cart-footer"></div>
 </div>
 
 <!-- ══ PRODUCT MODAL ══ -->
 <div class="modal-overlay" id="modalOverlay" onclick="closeModalOnOverlay(event)">
   <div class="modal" id="modal">
-    <button class="modal-close" onclick="closeModal()">✕</button>
+    <button type="button" class="modal-close" onclick="closeModal()">✕</button>
     <div id="modalContent"></div>
   </div>
 </div>
@@ -162,6 +188,7 @@
 <div class="toast" id="toast"></div>
 
 <!-- ══════════════════════════════════════ SCRIPT ══ -->
+<script src="produits.js"></script>
 <script src="script.js"></script>
 </body>
 </html>
