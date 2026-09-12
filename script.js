@@ -39,6 +39,20 @@ let currentFilter = 'all';
 let searchQuery = '';
 let sortBy = 'pertinence';
 
+// ══ IMAGES (WebP) ══
+function webpSrc(img) {
+  return /^img\//i.test(img || '') ? img.replace(/^((?:.*\/)?)([^\/]+)\.jpe?g$/i, '$1webp/$2.webp') : img;
+}
+function imgFallback(el) {
+  const wrap = el.closest('.product-img-wrap') || el.closest('.modal-img-wrap');
+  const pic = el.parentElement;
+  if (pic) pic.style.display = 'none';
+  if (wrap) {
+    const ph = wrap.querySelector('.product-img-placeholder, .modal-img-placeholder');
+    if (ph) ph.style.display = 'flex';
+  }
+}
+
 function saveCart() { try { localStorage.setItem(CART_KEY, JSON.stringify(cart)); } catch (e) {} }
 function loadCart() {
   try {
@@ -66,7 +80,7 @@ function renderHeroShowcase() {
   const p = PRODUCTS.find(x => x.id === 4);
   if (!p) return;
   document.getElementById('heroShowcaseImg').innerHTML = p.image
-    ? `<img src="${p.image}" alt="${p.name}" style="max-width:100%;max-height:100%;object-fit:contain;border-radius:12px;" onerror="this.outerHTML='<div style=font-size:72px>${p.emoji || '🖼️'}</div>'">`
+    ? `<picture><source type="image/webp" srcset="${webpSrc(p.image)}"><img src="${p.image}" alt="${p.name}" fetchpriority="high" style="max-width:100%;max-height:100%;object-fit:contain;border-radius:12px;" onerror="this.outerHTML='<div style=font-size:72px>${p.emoji || '🖼️'}</div>'"></picture>`
     : `<div style="font-size:72px">${p.emoji || '🖼️'}</div>`;
   document.getElementById('heroShowcaseName').textContent = p.name;
   document.getElementById('heroShowcaseDesc').textContent = p.description;
@@ -114,7 +128,7 @@ function renderProducts() {
   }
   grid.innerHTML = filtered.map(p => {
     const imgHtml = p.image
-      ? `<img src="${p.image}" alt="${p.name}" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" /><div class="product-img-placeholder" style="display:none;">${p.emoji || '🖼️'}</div>`
+      ? `<picture><source type="image/webp" srcset="${webpSrc(p.image)}"><img src="${p.image}" alt="${p.name}" loading="lazy" onerror="imgFallback(this)"></picture><div class="product-img-placeholder" style="display:none;">${p.emoji || '🖼️'}</div>`
       : `<div class="product-img-placeholder">${p.emoji || '🖼️'}</div>`;
     return `
     <div class="product-card" onclick="openModal(${p.id})">
@@ -176,8 +190,8 @@ function openModal(id) {
   const p = PRODUCTS.find(x => x.id === id);
   if (!p) return;
   const imgHtml = p.image
-    ? `<img class="modal-img" src="${p.image}" alt="${p.name}" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" /><div class="modal-img-placeholder" style="display:none;">${p.emoji || '🖼️'}</div>`
-    : `<div class="modal-img-placeholder">${p.emoji || '🖼️'}</div>`;
+    ? `<div class="modal-img-wrap"><picture><source type="image/webp" srcset="${webpSrc(p.image)}"><img class="modal-img" src="${p.image}" alt="${p.name}" onerror="imgFallback(this)"></picture><div class="modal-img-placeholder" style="display:none;">${p.emoji || '🖼️'}</div></div>`
+    : `<div class="modal-img-wrap"><div class="modal-img-placeholder">${p.emoji || '🖼️'}</div></div>`;
   const specsHtml = p.specs?.length
     ? `<div class="modal-specs"><h4>Caractéristiques</h4><div class="specs-grid">${p.specs.map(s=>`<div class="spec-item"><div class="spec-key">${s.key}</div><div class="spec-val">${s.val}</div></div>`).join('')}</div></div>` : '';
 
@@ -269,7 +283,7 @@ function renderCart() {
   }
   el.innerHTML = cart.map(item => `
     <div class="cart-item">
-      <div class="cart-item-img">${item.image ? `<img src="${item.image}" alt="${item.name}" onerror="this.outerHTML='<span style=font-size:26px>${item.emoji || '🖼️'}</span>'">` : `<span style="font-size:26px">${item.emoji || '🖼️'}</span>`}</div>
+      <div class="cart-item-img">${item.image ? `<picture><source type="image/webp" srcset="${webpSrc(item.image)}"><img src="${item.image}" alt="${item.name}" onerror="this.outerHTML='<span style=font-size:26px>${item.emoji || '🖼️'}</span>'"></picture>` : `<span style="font-size:26px">${item.emoji || '🖼️'}</span>`}</div>
       <div class="cart-item-info">
         <div class="cart-item-name">${item.name}</div>
         <div class="cart-item-price">${item.price.toLocaleString('fr-FR')} DH</div>
