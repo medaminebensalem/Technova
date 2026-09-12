@@ -2,7 +2,7 @@
 // ⚙️  CONFIGURATION — MODIFIEZ ICI
 // ══════════════════════════════════
 const SELLER = {
-  name:     "TechNova Store",
+  name:     "TecHamkim Store",
   phone:    "212706717887",    // ← Votre numéro WhatsApp sans + ni espaces (ex: 212612345678)
   city:     "Zagora, Maroc",
   desc:     "Votre boutique de confiance pour l'électronique à Zagora. Produits authentiques, garantie constructeur, livraison rapide.",
